@@ -10,14 +10,13 @@ while True:
         media = (nota1 + nota2) / 2
         situacao = "Aprovado" if media >= 7 else "Reprovado"
 
-        dados = {
-            "matricula": matricula,
-            "aluno": aluno,
-            "situacao": situacao
-        }
+        dados = {matricula, aluno, media, situacao }
 
         Lista.append(dados)
 
     elif operacao == "S" or operacao == "s":
+        print("----------------FICHA----------------")
+        print("MATRICULA | ALUNO  |  NOTA | SITUAÇÃO")
         print(Lista)
+
         break
