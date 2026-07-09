@@ -36,24 +36,27 @@ def validar_matricula(codigo):
         except ValueError:
             print("valor invalido, digite apenas números.")
 
+def validar_nome(aluno):
+    return aluno.replace(" ","").isalpha()
 
-
-def cadastar_aluno():
+def cadastrar_aluno():
     print("\n----------------NOVO CADASTRO-----------------")
-    matricula = validar_matricula("matricula")
-    aluno = str(input("Digite o seu aluno: "))
+    matricula = validar_matricula("matricula: ")
+    while True:
+        aluno = str(input("Digite o seu aluno: "))
+        if validar_nome(aluno):
+            break
+        else:
+            print("aluno invalido")
     nota1 = validar_nota("Digite a primeira nota: ")
     nota2 = validar_nota("Digite a segunda nota: ")
-
     media = calcular_media(nota1, nota2)
     situacao = verificar_situacao(media)
 
-
     return{"matricula":matricula,
-           "aluno":aluno,
-           "media":media,
-           "situacao":situacao}
-
+            "aluno":aluno,
+            "media":media,
+            "situacao":situacao}
 
 def exibit_lista(lista_aluno):
     print("-"*64)
@@ -73,7 +76,7 @@ while True:
     operacao = str(input("Digite I (para iniciar) ou S (para sair): "))
 
     if operacao == "I" or operacao == "i":
-        novo_Aluno = cadastar_aluno()
+        novo_Aluno = cadastrar_aluno()
         Lista.append(novo_Aluno)
         print("Cadastrado com sucesso! \n")
 
